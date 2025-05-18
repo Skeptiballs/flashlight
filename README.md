@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Flashlight
 
-## Getting Started
+A modern AI-powered web app for financial product discovery and distribution.
 
-First, run the development server:
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) (App Router, TypeScript, Tailwind CSS)
+- [Supabase](https://supabase.com/) (Postgres, Auth, Storage)
+- [Vercel](https://vercel.com/) (Preview Deployments)
+- [Cursor](https://www.cursor.sh/) (AI-enhanced development)
+
+## Local Development
+
+### 1. Clone and install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone git@github.com:Skeptiballs/flashlight.git
+cd flashlight
+pnpm install
+2. Set up environment
+Create a file called .env.local at the root with the following content:
+
+
+Bewerken
+NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-local-anon-key>
+3. Start Supabase and dev server
+
+supabase start
 pnpm dev
-# or
-bun dev
-```
+Then open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deployment
+This project is deployed via Vercel, linked to the main branch of this repository. Every pull request automatically generates a preview deployment.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Phase 0 Status
+ GitHub + Vercel linked
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ Local Supabase running
 
-## Learn More
+ Next.js starter app bootstrapped
 
-To learn more about Next.js, take a look at the following resources:
+ CI/CD working with PR previews
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ - Tables created:
+  - `companies`
+  - `products`
+  - `industry_bodies`
+- Fields include: `slug`, `logo_url`, `description_md`, `is_new`, `is_featured`, etc.
+- Relationships: `products.company_id → companies.id`
+- RLS configured:
+  - Public users can read
+  - Authenticated users can write
+- Migrations tracked in `/supabase/migrations`
+- Run with: `supabase db reset`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
